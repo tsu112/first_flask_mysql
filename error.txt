@@ -1,0 +1,140 @@
+  File "C:\Users\Tsu\repositorys\codingDojo\Python\flask_mysql\db_connection\first_flask_mysql\friend.py", line 2, in <module>
+    from mysqlconnection import connectToMySQL
+  File "C:\Users\Tsu\repositorys\codingDojo\Python\flask_mysql\db_connection\first_flask_mysql\mysqlconnection.py", line 29
+    )
+    ^
+SyntaxError: unmatched ')'
+
+---------------------------------------------------------------------
+RuntimeError
+RuntimeError: 'cryptography' package is required for sha256_password or caching_sha2_password auth methods
+
+-----------------------------------------------------------------------------
+NameError
+NameError: name 'pymysql' is not defined
+
+-----------------------------------------------------------------------------
+
+AttributeError
+AttributeError: 'MySQLConnection' object has no attribute 'query_db'
+
+Traceback (most recent call last)
+File "C:\Users\Tsu\.virtualenvs\first_flask_mysql-W_a3ro2q\Lib\site-packages\flask\app.py", line 2091, in __call__
+    def __call__(self, environ: dict, start_response: t.Callable) -> t.Any:
+        """The WSGI server calls the Flask application object as the
+        WSGI application. This calls :meth:`wsgi_app`, which can be
+        wrapped to apply middleware.
+        """
+        return self.wsgi_app(environ, start_response)
+File "C:\Users\Tsu\.virtualenvs\first_flask_mysql-W_a3ro2q\Lib\site-packages\flask\app.py", line 2076, in wsgi_app
+            try:
+                ctx.push()
+                response = self.full_dispatch_request()
+            except Exception as e:
+                error = e
+                response = self.handle_exception(e)
+            except:  # noqa: B001
+                error = sys.exc_info()[1]
+                raise
+            return response(environ, start_response)
+        finally:
+File "C:\Users\Tsu\.virtualenvs\first_flask_mysql-W_a3ro2q\Lib\site-packages\flask\app.py", line 2073, in wsgi_app
+        ctx = self.request_context(environ)
+        error: t.Optional[BaseException] = None
+        try:
+            try:
+                ctx.push()
+                response = self.full_dispatch_request()
+            except Exception as e:
+                error = e
+                response = self.handle_exception(e)
+            except:  # noqa: B001
+                error = sys.exc_info()[1]
+File "C:\Users\Tsu\.virtualenvs\first_flask_mysql-W_a3ro2q\Lib\site-packages\flask\app.py", line 1518, in full_dispatch_request
+            request_started.send(self)
+            rv = self.preprocess_request()
+            if rv is None:
+                rv = self.dispatch_request()
+        except Exception as e:
+            rv = self.handle_user_exception(e)
+        return self.finalize_request(rv)
+ 
+    def finalize_request(
+        self,
+        rv: t.Union[ResponseReturnValue, HTTPException],
+File "C:\Users\Tsu\.virtualenvs\first_flask_mysql-W_a3ro2q\Lib\site-packages\flask\app.py", line 1516, in full_dispatch_request
+        self.try_trigger_before_first_request_functions()
+        try:
+            request_started.send(self)
+            rv = self.preprocess_request()
+            if rv is None:
+                rv = self.dispatch_request()
+        except Exception as e:
+            rv = self.handle_user_exception(e)
+        return self.finalize_request(rv)
+ 
+    def finalize_request(
+File "C:\Users\Tsu\.virtualenvs\first_flask_mysql-W_a3ro2q\Lib\site-packages\flask\app.py", line 1502, in dispatch_request
+            getattr(rule, "provide_automatic_options", False)
+            and req.method == "OPTIONS"
+        ):
+            return self.make_default_options_response()
+        # otherwise dispatch to the handler for that endpoint
+        return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+ 
+    def full_dispatch_request(self) -> Response:
+        """Dispatches the request and on top of that performs request
+        pre and postprocessing as well as HTTP exception catching and
+        error handling.
+File "C:\Users\Tsu\repositorys\codingDojo\Python\flask_mysql\db_connection\first_flask_mysql\server.py", line 10, in index
+ 
+ 
+@app.route("/")
+def index():
+    # call the get all classmethod to get all friends
+    friends = Friend.get_all()
+    print(friends)
+    return render_template("index.html")
+ 
+ 
+if __name__ == "__main__":
+File "C:\Users\Tsu\repositorys\codingDojo\Python\flask_mysql\db_connection\first_flask_mysql\friend.py", line 20, in get_all
+ 
+    @classmethod
+    def get_all(cls):
+        query = "SELECT * FROM friends;"
+        # make sure to call the connectToMySQL function with the schema you are targeting.
+        results = connectToMySQL('first_flask').query_db(query)
+        # Create an empty list to append our instances of friends
+        friends = []
+        # Iterate over the db results and create instances of friends with cls.
+        for friend in results:
+            friends.append(cls(friend))
+AttributeError: 'MySQLConnection' object has no attribute 'query_db'
+This is the Copy/Paste friendly version of the traceback.
+
+Traceback (most recent call last):
+  File "C:\Users\Tsu\.virtualenvs\first_flask_mysql-W_a3ro2q\Lib\site-packages\flask\app.py", line 2091, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "C:\Users\Tsu\.virtualenvs\first_flask_mysql-W_a3ro2q\Lib\site-packages\flask\app.py", line 2076, in wsgi_app
+    response = self.handle_exception(e)
+  File "C:\Users\Tsu\.virtualenvs\first_flask_mysql-W_a3ro2q\Lib\site-packages\flask\app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\Tsu\.virtualenvs\first_flask_mysql-W_a3ro2q\Lib\site-packages\flask\app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\Tsu\.virtualenvs\first_flask_mysql-W_a3ro2q\Lib\site-packages\flask\app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\Tsu\.virtualenvs\first_flask_mysql-W_a3ro2q\Lib\site-packages\flask\app.py", line 1502, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "C:\Users\Tsu\repositorys\codingDojo\Python\flask_mysql\db_connection\first_flask_mysql\server.py", line 10, in index
+    friends = Friend.get_all()
+  File "C:\Users\Tsu\repositorys\codingDojo\Python\flask_mysql\db_connection\first_flask_mysql\friend.py", line 20, in get_all
+    results = connectToMySQL('first_flask').query_db(query)
+AttributeError: 'MySQLConnection' object has no attribute 'query_db'
+The debugger caught an exception in your WSGI application. You can now look at the traceback which led to the error. If you enable JavaScript you can also use additional features such as code execution (if the evalex feature is enabled), automatic pasting of the exceptions and much more.
+Brought to you by DON'T PANIC, your friendly Werkzeug powered traceback interpreter.
+Console Locked
+The console is locked and needs to be unlocked by entering the PIN. You can find the PIN printed out on the standard output of your shell that runs the server.
+
+PIN: 
+ 
